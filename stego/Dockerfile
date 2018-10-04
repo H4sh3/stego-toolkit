@@ -41,10 +41,13 @@ RUN chmod a+x /tmp/install/*.sh && \
 # RUN find /tmp/install -name '*.sh' -exec chmod a+x {} + && \
 #     for f in $(ls /tmp/install/* | sort );do /bin/sh $f;done && \
 #     rm -rf /tmp/install
+RUN pip install flask
+COPY ./api /api
 
 COPY scripts /opt/scripts
 RUN find /opt/scripts -name '*.sh' -exec chmod a+x {} + && \
     find /opt/scripts -name '*.py' -exec chmod a+x {} +
 ENV PATH="/opt/scripts:${PATH}"
 
-WORKDIR /data
+ENTRYPOINT ["python"]
+CMD ["/api/app.py"]
