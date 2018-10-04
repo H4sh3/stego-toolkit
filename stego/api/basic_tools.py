@@ -1,31 +1,21 @@
 import subprocess
 from util import replace_newline
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_TOOLS = ['file',
+                 'exiftool',
+                 'binwalk',
+                 'strings',
+                 'foremost',]
 def escape_filename(fn):
     return fn.replace('/','')
 
-def file(fn):
-    fn = escape_filename(fn)
-    output = subprocess.Popen("file /data/"+fn, shell=True, stdout=subprocess.PIPE).stdout.read()
-    return replace_newline(output)
-    
-def exiftool(fn):
-    fn = escape_filename(fn)
-    output = subprocess.Popen("exiftool /data/"+fn, shell=True, stdout=subprocess.PIPE).stdout.read()
-    return replace_newline(output)
+def run(tool,filename):
+    if any(tool in s for s in ALLOWED_TOOLS):
+        filename = escape_filename(filename)
+        cmd = tool + ' /data/' + filename
+        output = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE).stdout.read()
+        return replace_newline(output)
+    else:
+        return 'Unknown tool'
 
-def binwalk(fn):
-    fn = escape_filename(fn)
-    output = subprocess.Popen("binwalk /data/"+fn, shell=True, stdout=subprocess.PIPE).stdout.read()
-    return replace_newline(output)
-
-def strings(fn):
-    fn = escape_filename(fn)
-    output = subprocess.Popen("strings /data/"+fn, shell=True, stdout=subprocess.PIPE).stdout.read()
-    return replace_newline(output)
-
-def foremost(fn):
-    fn = escape_filename(fn)
-    output = subprocess.Popen("foremost /data/"+fn, shell=True, stdout=subprocess.PIPE).stdout.read()
-    return replace_newline(output)
