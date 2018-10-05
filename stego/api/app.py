@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,jsonify
 from util import replace_newline
 import subprocess
 import basic_tools
@@ -15,15 +15,15 @@ def hello_world():
 def data_dir_route():
     return data_dir()
 
-@app.route('/api')
+@app.route('/api/run')
 def start_tool():
     log_request(request)
     filename, tool = get_filename_and_tool(request)
     return basic_tools.run(str(filename),str(tool))
 
 @app.route('/api/tools')
-def tools_lost():
-    return json.dumps(basic_tools.ALLOWED_TOOLS)
+def tools_list():
+    return jsonify(basic_tools.ALLOWED_TOOLS)
 
 def data_dir():
     output = subprocess.Popen("ls ../data", shell=True, stdout=subprocess.PIPE).stdout.read()
