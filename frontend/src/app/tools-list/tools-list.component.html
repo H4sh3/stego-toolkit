@@ -1,0 +1,9 @@
+<p>
+  tools-list works!
+  <li *ngFor="let tool of tools">
+    <button (click)=run(tool)>{{tool}}</button>
+  </li>
+  <span style="white-space: pre-line">
+    {{result}}
+  </span>
+</p>
