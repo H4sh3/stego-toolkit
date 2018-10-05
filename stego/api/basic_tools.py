@@ -15,7 +15,7 @@ def run(tool,filename):
         filename = escape_filename(filename)
         cmd = tool + ' /data/' + filename
         output = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE).stdout.read()
-        return replace_newline(output)
+        return output
     else:
         return 'Unknown tool'
 
