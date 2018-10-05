@@ -19,7 +19,7 @@ def data_dir_route():
 def start_tool():
     log_request(request)
     filename, tool = get_filename_and_tool(request)
-    return basic_tools.run(str(filename),str(tool))
+    return jsonify(basic_tools.run(str(filename),str(tool)))
 
 @app.route('/api/tools')
 def tools_list():
