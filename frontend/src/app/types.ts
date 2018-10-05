@@ -1,0 +1,1 @@
+export type Result = {tool:string,output:string}

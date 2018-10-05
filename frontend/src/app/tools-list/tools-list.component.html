@@ -1,9 +1,10 @@
-<p>
-  tools-list works!
-  <li *ngFor="let tool of tools">
-    <button (click)=run(tool)>{{tool}}</button>
-  </li>
-  <span style="white-space: pre-line">
-    {{result}}
-  </span>
-</p>
+<mat-card class="grid-item">
+  <mat-card-title>
+    Tools
+  </mat-card-title>
+  <mat-card-content>
+  <div *ngFor="let tool of tools" style="margin:1rem">
+    <button mat-raised-button color="primary" (click)=run(tool)>{{tool}}</button>
+  </div>
+  </mat-card-content>
+</mat-card>

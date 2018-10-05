@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { ToolsService } from '../data.service';
-import { Observable } from 'rxjs';
+import { Result } from '../types';
 
 @Component({
   selector: 'app-tools-list',
@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
   styles: []
 })
 export class ToolsListComponent implements OnInit {
+  @Output() returnResults = new EventEmitter<Result>();
 
   constructor(private toolsService: ToolsService) { }
   
   tools: string[];
-  result: string;
 
   ngOnInit() {
     this.toolsService.getToolsList().subscribe(tools => {
@@ -22,7 +22,7 @@ export class ToolsListComponent implements OnInit {
 
   run(tool:string){
     this.toolsService.runTool(tool).subscribe(result => {
-      this.result = result
+      this.returnResults.emit({tool:tool,output:result});
     });
   }
 

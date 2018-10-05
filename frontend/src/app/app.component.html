@@ -1,8 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to Stego!
-  </h1>
-  <app-tools-list></app-tools-list>
+<div>
+  <body>
+    <div class="grid-container">
+      <div class="grid-item">
+        <app-tools-list (returnResults)=newResult($event)></app-tools-list>
+      </div>
+      <div class="grid-item">
+        <app-results [results]=results></app-results>
+      </div>
+    </div>
+  </body>
 </div>
 
