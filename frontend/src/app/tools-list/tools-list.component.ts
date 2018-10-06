@@ -1,5 +1,5 @@
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
-import { ToolsService } from '../data.service';
+import { DataService } from '../data.service';
 import { Result } from '../types';
 
 @Component({
@@ -10,20 +10,20 @@ import { Result } from '../types';
 export class ToolsListComponent implements OnInit {
   @Output() returnResults = new EventEmitter<Result>();
 
-  constructor(private toolsService: ToolsService) { }
+  constructor(private dataService: DataService) { }
   
   tools: string[];
   running: boolean = false;
 
   ngOnInit() {
-    this.toolsService.getToolsList().subscribe(tools => {
+    this.dataService.getToolsList().subscribe(tools => {
       this.tools = tools
     });
   }
 
   run(tool:string){
     this.running = true;
-    this.toolsService.runTool(tool).subscribe(result => {
+    this.dataService.runTool(tool).subscribe(result => {
       this.returnResults.emit({tool:tool,output:result});
       this.running = false;
     });

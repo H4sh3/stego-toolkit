@@ -1,6 +1,1 @@
-<form method="post" enctype="multipart/form-data">
-  <label>Upload new picture
-    <input #in name="datei" type="file" size="50" accept="text/*"> 
-  </label>  
-  <button (click)="upload(in)">Post!</button>
-</form>
+<input #fileInput (change)="upload($event)" type="file" name="pic" accept="image/*">

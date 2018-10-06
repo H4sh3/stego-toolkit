@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ToolsService {
+export class DataService {
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +16,10 @@ export class ToolsService {
 
   runTool(tool:string){
     return this.http.get<string>(`/api/run?filename=husky.png&tool=${tool}`)
+  }
+
+  getFiles(){
+    return this.http.get<string[]>(`/api/files`)
   }
 
 }

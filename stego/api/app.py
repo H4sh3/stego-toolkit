@@ -2,7 +2,8 @@ from flask import Flask,request,jsonify
 from util import replace_newline
 import subprocess
 import basic_tools
-import json
+import os
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
@@ -24,6 +25,21 @@ def start_tool():
 @app.route('/api/tools')
 def tools_list():
     return jsonify(basic_tools.ALLOWED_TOOLS)
+
+@app.route('/api/upload', methods=['POST'])
+def upload_file():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return 'error: no picture'
+        file = request.files['file']
+        filename = file.filename
+        if filename == '':
+            return 'error: no filename'
+        if file:
+            logit(filename)
+            file.save(os.path.join('/tmp/files', filename))
+            return filename
+    return 'error'
 
 def get_files():
     output = subprocess.Popen("ls /tmp/files", shell=True, stdout=subprocess.PIPE).stdout.read()

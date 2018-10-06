@@ -9,7 +9,8 @@
         <app-results [results]=results></app-results>
       </div>
       <div class="grid-item">
-        <app-file-upload></app-file-upload>
+        <app-file-upload (newUpload)="fileList.loadFiles()"></app-file-upload>
+        <app-file-list #fileList></app-file-list>
       </div>
     </div>
   </body>
