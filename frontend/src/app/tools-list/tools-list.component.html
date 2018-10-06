@@ -3,9 +3,14 @@
     Tools
   </mat-card-title>
   <mat-card-content>
-  <div *ngFor="let tool of tools" style="margin:1rem">
-    <button mat-raised-button color="primary" (click)=run(tool)>{{tool}}</button>
-  </div>
+    <div *ngFor="let tool of tools" style="margin:1rem">
+      <button mat-raised-button color="accent" (click)=runTool.emit(tool)>{{tool}}</button>
+    </div>
+    <span *ngIf="running;else fd">
+      <mat-progress-bar mode="query"></mat-progress-bar>
+    </span>
+    <ng-template #fd>
+      <div style="height:5px"></div>
+    </ng-template>
   </mat-card-content>
 </mat-card>
-<mat-progress-bar *ngIf="running" mode="query"></mat-progress-bar>

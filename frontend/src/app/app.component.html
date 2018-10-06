@@ -3,14 +3,11 @@
   <body>
     <div class="grid-container">
       <div class="grid-item">
-        <app-tools-list (returnResults)=newResult($event)></app-tools-list>
+        <app-tools-list (runTool)=runTool($event) [running]="running"></app-tools-list>
+        <app-files-container (fileSelected)="fileSelected($event)"></app-files-container>
       </div>
       <div class="grid-item">
         <app-results [results]=results></app-results>
-      </div>
-      <div class="grid-item">
-        <app-file-upload (newUpload)="fileList.loadFiles()"></app-file-upload>
-        <app-file-list #fileList></app-file-list>
       </div>
     </div>
   </body>

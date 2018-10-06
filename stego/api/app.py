@@ -11,7 +11,6 @@ app = Flask(__name__)
 def hello_world():
     return 'Flask Dockerized'
 
-
 @app.route('/api/files')
 def files_route():
     return get_files()

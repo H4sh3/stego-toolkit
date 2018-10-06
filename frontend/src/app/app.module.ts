@@ -11,6 +11,7 @@ import { ResultsComponent } from './results/results.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileListComponent } from './file-list/file-list.component';
+import { FilesContainerComponent } from './files-container/files-container.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FileListComponent } from './file-list/file-list.component';
     ToolsListComponent,
     ResultsComponent,
     FileUploadComponent,
-    FileListComponent
+    FileListComponent,
+    FilesContainerComponent
   ],
   imports: [
     BrowserModule,

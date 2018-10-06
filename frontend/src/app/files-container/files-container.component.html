@@ -1,0 +1,9 @@
+<mat-card class="grid-item" style="margin-top:1rem">
+  <mat-card-title>
+    Files
+  </mat-card-title>
+  <mat-card-content>
+    <app-file-upload (newUpload)="fileList.loadFiles()"></app-file-upload>
+    <app-file-list #fileList (fileSelected)="fileSelected.emit($event)"></app-file-list>
+  </mat-card-content>
+</mat-card>

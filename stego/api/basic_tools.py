@@ -16,7 +16,7 @@ def escape_filename(fn):
 def run(tool,filename):
     if any(tool in s for s in ALLOWED_TOOLS):
         filename = escape_filename(filename)
-        cmd = tool + ' /data/' + filename
+        cmd = tool + ' /tmp/files/' + filename
         output = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE).stdout.read()
         return output
     else:

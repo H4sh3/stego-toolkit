@@ -1,1 +1,1 @@
-export type Result = {tool:string,output:string}
+export type Result = {tool:string,file:string,output:string}
