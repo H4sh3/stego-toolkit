@@ -9,5 +9,6 @@ My goal is to provide a webapp that can be used to start the stego tools and eva
 
     -   Add file delete
     -   Add delete for results
+    -   Add dockerfile for frontend
     -   Mount file folder as docker volume
     -   Add more tools
