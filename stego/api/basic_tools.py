@@ -6,7 +6,11 @@ ALLOWED_TOOLS = ['file',
                  'exiftool',
                  'binwalk',
                  'strings',
-                 'foremost',]
+                 'foremost',
+                 'pngcheck',
+                 'identify',
+                 'zsteg -a',
+                 'stegdetect']
 def escape_filename(fn):
     return fn.replace('/','')
 
