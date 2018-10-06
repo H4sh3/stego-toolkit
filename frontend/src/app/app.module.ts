@@ -8,6 +8,7 @@ import { ToolsService } from './data.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import { ResultsComponent } from './results/results.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ResultsComponent } from './results/results.component';
     BrowserModule,
     HttpClientModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressBarModule
   ],
   providers: [ToolsService],
   bootstrap: [AppComponent]

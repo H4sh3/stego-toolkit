@@ -13,6 +13,7 @@ export class ToolsListComponent implements OnInit {
   constructor(private toolsService: ToolsService) { }
   
   tools: string[];
+  running: boolean = false;
 
   ngOnInit() {
     this.toolsService.getToolsList().subscribe(tools => {
@@ -21,8 +22,10 @@ export class ToolsListComponent implements OnInit {
   }
 
   run(tool:string){
+    this.running = true;
     this.toolsService.runTool(tool).subscribe(result => {
       this.returnResults.emit({tool:tool,output:result});
+      this.running = false;
     });
   }
 
