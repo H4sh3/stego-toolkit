@@ -7,6 +7,7 @@ My goal is to provide a webapp that can be used to start the stego tools and eva
 
 ## Next Features!
 
-    -   Add file upload / delete
-    -   Handle file scans in temporary folders on backend side
+    -   Add file delete
+    -   Add delete for results
+    -   Mount file folder as docker volume
     -   Add more tools
