@@ -11,9 +11,9 @@ def hello_world():
     return 'Flask Dockerized'
 
 
-@app.route('/data_dir')
-def data_dir_route():
-    return data_dir()
+@app.route('/api/files')
+def files_route():
+    return get_files()
 
 @app.route('/api/run')
 def start_tool():
@@ -25,9 +25,9 @@ def start_tool():
 def tools_list():
     return jsonify(basic_tools.ALLOWED_TOOLS)
 
-def data_dir():
-    output = subprocess.Popen("ls ../data", shell=True, stdout=subprocess.PIPE).stdout.read()
-    return replace_newline(output)
+def get_files():
+    output = subprocess.Popen("ls /tmp/files", shell=True, stdout=subprocess.PIPE).stdout.read()
+    return jsonify(output.split())
 
 def log_request(request):
     filename, tool = get_filename_and_tool(request)

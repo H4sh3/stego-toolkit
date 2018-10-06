@@ -43,6 +43,9 @@ RUN chmod a+x /tmp/install/*.sh && \
 #     rm -rf /tmp/install
 RUN pip install flask
 COPY ./api /api
+RUN mkdir /tmp/files
+COPY examples/husky.png /tmp/files
+COPY examples/ORIGINAL.jpg /tmp/files
 
 COPY scripts /opt/scripts
 RUN find /opt/scripts -name '*.sh' -exec chmod a+x {} + && \
