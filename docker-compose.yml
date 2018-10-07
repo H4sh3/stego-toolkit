@@ -7,3 +7,4 @@ services:
     volumes:
       - "./stego/api:/api"
       - "./stego/data:/data"
+      - "./stego/files:/tmp/files"
