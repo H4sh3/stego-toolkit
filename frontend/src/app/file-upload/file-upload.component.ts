@@ -1,29 +1,38 @@
-import { Component, OnInit, Output,EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { DataService } from '../data.service';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css']
 })
-export class FileUploadComponent implements OnInit {
+export class FileUploadComponent{
   @Output() newUpload = new EventEmitter<void>();
 
-  constructor() { }
+  formGroup = this.fb.group({
+    file: [null, Validators.required]
+  });
 
-  ngOnInit() {
+  constructor(private dataService: DataService, private fb: FormBuilder) { }
+
+  onFileChange(event) {
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.formGroup.patchValue({
+          file: event.target.files[0]
+        });
+      };
+    }
   }
 
-  upload(f){
-    const file = f.target.files[0]
-    var formData: FormData = new FormData();
-    formData.append("file", file, file.name);
-    var xhr = new XMLHttpRequest();
-    xhr.upload.addEventListener("progress", (ev: ProgressEvent) => {
-      
+  upload() {
+    this.dataService.uploadFile(this.formGroup.get('file').value).subscribe(res => {
+      this.newUpload.emit();
     });
-    xhr.open("POST", "/api/upload", true);
-    xhr.send(formData);
-    this.newUpload.emit();
   }
 
 }

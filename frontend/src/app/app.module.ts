@@ -12,6 +12,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { FileListComponent } from './file-list/file-list.component';
 import { FilesContainerComponent } from './files-container/files-container.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FilesContainerComponent } from './files-container/files-container.compo
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    ReactiveFormsModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

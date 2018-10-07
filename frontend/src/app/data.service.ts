@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { tap, catchError, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +18,12 @@ export class DataService {
 
   getFiles() {
     return this.http.get<string[]>(`/api/files`)
+  }
+
+  uploadFile(file){
+    var formData: FormData = new FormData();
+    formData.append("file", file, file.name);
+    return this.http.post('/api/upload',formData)
   }
 
   deleteFile(file: string) {

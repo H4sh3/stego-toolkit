@@ -37,7 +37,7 @@ def upload_file():
         if file:
             logit(filename)
             file.save(os.path.join('/tmp/files', filename))
-            return filename
+            return jsonify(filename)
     return 'error'
 
 def get_files():
