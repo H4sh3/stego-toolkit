@@ -1,4 +1,6 @@
 <form [formGroup]="formGroup" novalidate (ngSubmit)="upload()">
-    <input type="file" (change)="onFileChange($event)" accept="image/*" />
-    <button type="submit" [disabled]="formGroup.invalid || formGroup.prestine">Submit</button>
+    <div style="margin:1rem">
+        <input  type="file" (change)="onFileChange($event)" accept="image/*" />
+        <button type="submit" [disabled]="formGroup.invalid || formGroup.prestine">Submit</button>
+    </div>
 </form>

@@ -1,4 +1,5 @@
 <div *ngFor="let file of files" style="margin:1rem">
     <button mat-raised-button [color]="isSelected(file)" (click)=selectFile(file)>{{file}}</button>
+    <span style="margin:1rem" (click)=deleteFile(file)>Delete</span>
 </div>
 Selected File: {{selectedFile}}

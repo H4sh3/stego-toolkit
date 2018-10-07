@@ -1,2 +1,3 @@
-def replace_newline(output):
-    return output.replace('\n','</br>')
+def secure_filename(fn):
+    fn = fn.replace('/','')
+    return fn.replace('..','')

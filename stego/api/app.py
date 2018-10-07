@@ -1,9 +1,8 @@
 from flask import Flask,request,jsonify
-from util import replace_newline
 import subprocess
 import basic_tools
 import os
-from werkzeug.utils import secure_filename
+from util import secure_filename
 
 app = Flask(__name__)
 
@@ -11,9 +10,16 @@ app = Flask(__name__)
 def hello_world():
     return 'Flask Dockerized'
 
-@app.route('/api/files')
+@app.route('/api/files',methods=['GET'])
 def files_route():
-    return get_files()
+    if request.method == 'GET':
+        return get_files()
+
+@app.route('/api/deletefile/<string:filename>',methods=['DELETE'])
+def delete_files_route(filename):
+    if request.method == 'DELETE':
+        delete_file(secure_filename(filename))
+        return jsonify(filename)
 
 @app.route('/api/run')
 def start_tool():
@@ -43,6 +49,10 @@ def upload_file():
 def get_files():
     output = subprocess.Popen("ls /tmp/files", shell=True, stdout=subprocess.PIPE).stdout.read()
     return jsonify(output.split())
+
+def delete_file(file):
+    subprocess.Popen("rm /tmp/files/"+file, shell=True, stdout=subprocess.PIPE).stdout.read()
+
 
 def log_request(request):
     filename, tool = get_filename_and_tool(request)

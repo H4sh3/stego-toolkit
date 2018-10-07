@@ -1,5 +1,5 @@
 import subprocess
-from util import replace_newline
+from util import secure_filename
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 ALLOWED_TOOLS = ['file',
@@ -10,12 +10,10 @@ ALLOWED_TOOLS = ['file',
                  'identify',
                  'zsteg -a',
                  'stegdetect']
-def escape_filename(fn):
-    return fn.replace('/','')
 
 def run(tool,filename):
     if any(tool in s for s in ALLOWED_TOOLS):
-        filename = escape_filename(filename)
+        filename = secure_filename(filename)
         cmd = tool + ' /tmp/files/' + filename
         output = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE).stdout.read()
         return output

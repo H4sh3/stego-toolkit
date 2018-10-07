@@ -34,7 +34,13 @@ export class FileListComponent implements OnInit {
   }
 
   deleteFile(file: string) {
-    this.dataService.deleteFile(file);
+    this.dataService.deleteFile(file).subscribe(res => {
+      let index = this.files.indexOf(file)
+      this.files.splice(index,1)
+      if(this.selectedFile === file){
+        this.selectedFile = '';
+      }
+    });
   }
 
   isSelected(file: string) {

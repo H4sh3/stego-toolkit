@@ -27,7 +27,7 @@ export class DataService {
   }
 
   deleteFile(file: string) {
-    console.log("tbd")
+    return this.http.delete(`/api/deletefile/${file}`)
   }
 
 }
