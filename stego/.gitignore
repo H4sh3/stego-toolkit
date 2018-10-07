@@ -1,6 +1,7 @@
 data/**/*
 !data/README.md
 examples/stego-files
+files/*
 
 
 # General
